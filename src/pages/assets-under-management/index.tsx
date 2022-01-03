@@ -8,6 +8,8 @@ import AssetsCard from '../../components/AssetsCard';
 import Header from '../../components/Header';
 import ScreenContainer from '../../components/ScreenContainer';
 import Select from '../../components/Select';
+import UserAssetsPortfolio from '../../components/UserAssetsPortfolio';
+
 // Import Utils goes here
 import FormatUtils from '../../utils';
 // Import Icons goes here
@@ -15,7 +17,6 @@ import { ReactComponent as SVGDeFiChainIcon } from '../../assets/icons/icon_defi
 import { ReactComponent as SVGDashIcon } from '../../assets/icons/icon_dash.svg';
 // Import styles goes here
 import './style.scss';
-import UserAssetsPortfolio from '../../components/UserAssetsPortfolio';
 
 const MasterNodesAUMPage: React.FC = () => {
     const dispatch = useAppDispatch();

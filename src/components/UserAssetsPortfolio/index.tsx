@@ -13,18 +13,18 @@ type Props = {
      * Selected currency to format the sum value
      */
     selectedCurrency: string;
-
-
 }
 
 const UserAssetsPortfolio: React.FC<Props> = ({ sumOfTotalAssetsValue = 0, selectedCurrency }) => {
 
     return (
         <div className='user--portfolio'>
-            <span>Total Assets</span>
-            <h3 data-testid={'testid--sum-value'}>
-                {FormatUtils.formatCurrency(sumOfTotalAssetsValue ?? 0, selectedCurrency)}
-            </h3>
+            <div className='total--asset'>
+                <span>Total Asset</span>
+                <h3 data-testid={'testid--sum-value'}>
+                    {FormatUtils.formatCurrency(sumOfTotalAssetsValue ?? 0, selectedCurrency)}
+                </h3>
+            </div>
         </div>
     )
 };

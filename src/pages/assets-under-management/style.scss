@@ -7,6 +7,9 @@
     & .wrapper {
         flex-grow: 1;
         padding: 1.5rem;
+        @include breakpoint(mobileonly) {
+            padding: 0.5rem;
+        }
     }
     
     & .currency---selection {

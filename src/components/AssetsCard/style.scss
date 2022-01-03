@@ -1,3 +1,4 @@
+
 .card {
     padding: 1rem 0;
     background-color: var(--background);
@@ -18,8 +19,9 @@
         & h4 {
             flex: 1;
             display: flex;
-            justify-content: flex-end;
             text-transform: uppercase;
+            flex-direction: column-reverse;
+            align-items: flex-end;
             
             span {
                 padding-right: 0.5rem;

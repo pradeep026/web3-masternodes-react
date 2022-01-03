@@ -1,5 +1,22 @@
+@import '../../styles/mixins';
+
 .user--portfolio {
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    @include breakpoint(mobileonly) {
+        flex-direction: column;
+    }
+
+    & .total--asset {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        @include breakpoint(mobileonly) {
+            margin-bottom: 0.5rem;
+        }
+    }
     h3 {
         color: var(--primary);
     }

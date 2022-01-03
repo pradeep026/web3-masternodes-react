@@ -15,6 +15,7 @@ import { ReactComponent as SVGDeFiChainIcon } from '../../assets/icons/icon_defi
 import { ReactComponent as SVGDashIcon } from '../../assets/icons/icon_dash.svg';
 // Import styles goes here
 import './style.scss';
+import UserAssetsPortfolio from '../../components/UserAssetsPortfolio';
 
 const MasterNodesAUMPage: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -46,14 +47,11 @@ const MasterNodesAUMPage: React.FC = () => {
         <ScreenContainer className='aum--page'>
           <Header />
           <div className='wrapper'>
-              <div className='total--assets'>
-                <span>Total Assets</span>
-                <h3 data-testid={'testid--sum-value'}>
-                    {FormatUtils.formatCurrency(masternodes.sumOfTotalAssetsValue ?? 0, currencies.selectedCurrency)}
-                </h3>
-              </div>
+              <UserAssetsPortfolio
+                sumOfTotalAssetsValue={masternodes.sumOfTotalAssetsValue}
+                selectedCurrency={currencies.selectedCurrency} />
               <div className='currency---selection'>
-                  <h4>Display prices in</h4>
+                <h4>Display prices in</h4>
                 <Select
                     testId={`testid--currency-list`}
                     options={currencies.currenciesList}

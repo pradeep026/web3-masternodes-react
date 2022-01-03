@@ -1,0 +1,21 @@
+.select--component {
+    position: relative;
+
+    select {
+        min-width: 12rem;
+        height: 2.5rem;
+        background: var(--background);
+        color: var(--text-color);
+        font-size: var(--text-base);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+
+        option {
+            color: var(--text-color);
+            background: var(--background);
+            white-space: pre;
+            min-height: 1rem;
+        }
+    }
+}

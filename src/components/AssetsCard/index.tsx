@@ -45,7 +45,7 @@ const AssetsCard: React.FC<Props> = ({ headerIcon, headingLabel, selecteCurrency
                 <h3>{headingLabel}</h3>
                 {
                     selectedCurrencyRatePerCoin &&
-                    <h4>
+                    <h4 data-testid={`testid--${headingLabel}-coin-value`}>
                         <span>Per Coin</span>
                         {selectedCurrencyRatePerCoin} {selecteCurrency}
                     </h4>

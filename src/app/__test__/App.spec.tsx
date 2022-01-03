@@ -1,9 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import axios from 'axios';
 import { Provider } from 'react-redux';
+import { act } from 'react-dom/test-utils';
 import App from '../App';
 import { store } from '../../stores';
 import { Currencies, NoOfCoinsPerMasterNode } from '../../constants';
+import FormatUtils from '../../utils';
 
 const mockMasterNodesResponse = [{"id":"1","coin":"DeFi","status":"ACTIVE"},{"id":"2","coin":"DeFi","status":"ACTIVE"},{"id":"3","coin":"Dash","address":"8Kh3jSQe2c659oBGghF6kkweGxvixXQswh","status":"ACTIVE"},{"id":"4","coin":"DeFi","status":"AWAITING_FIRST_REWARD"},{"id":"5","coin":"Dash","status":"ACTIVE"},{"id":"6","coin":"Dash","status":"ACTIVE"},{"id":"7","coin":"DeFi","status":"ACTIVE"},{"id":"8","coin":"DeFi","status":"ACTIVE"}];
 const mockPricesResponse = {"dash":{"usd":141.71,"eur":124.8,"sgd":191.36,"btc":0.00299377,"eth":0.03706167},"defichain":{"usd":3.39,"eur":2.99,"sgd":4.58,"btc":7.163e-05,"eth":0.00088674}};
@@ -75,4 +77,52 @@ describe(`App - Integration Testing`, () => {
       expect(state.currencies.selectedCurrency).toBe(currency.value);
     });
   })
+
+
+  it(`renders sum of total assets - coimbined aum value`, async () => {
+    mockApiFunction();
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+    const selectElement = screen.getByTestId(`testid--currency-list`);
+    fireEvent.change(
+      selectElement,
+      { target: { value: `usd` }}
+    );
+      
+    // Looping all currencies to simulate the currency change event
+    await act(async () => {
+      let state = store.getState();
+      const totalAumElement = screen.getByTestId(`testid--sum-value`);
+      expect(state.masternodes.sumOfTotalAssetsValue).toEqual(6_96_330); // 696330 is total value of mock data's defichain value + dash value in USD
+      expect(totalAumElement).toHaveTextContent(FormatUtils.formatCurrency(6_96_330, `usd`)); // Screen renders formatted value of `sumOfTotalAssetsValue`
+    });
+  });
+
+  it(`screen renders with per coin values of selected currency`, async () => {
+    mockApiFunction();
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+    let state = store.getState();
+    expect(screen.getByTestId(`testid--Dash-coin-value`)).toHaveTextContent(`${state.currencies.priceRates?.dash[`usd`]}`);
+    expect(screen.getByTestId(`testid--DeFi-coin-value`)).toHaveTextContent(`${state.currencies.priceRates?.defichain[`usd`]}`);
+
+    // Assert Changing the currency updates per coin value in Assets Card header
+    const selectElement = screen.getByTestId(`testid--currency-list`);
+    fireEvent.change(
+      selectElement,
+      { target: { value: `eth` }}
+    );
+
+    await act(async () => {
+      let state = store.getState();
+      expect(screen.getByTestId(`testid--Dash-coin-value`)).toHaveTextContent(`${state.currencies.priceRates?.dash[`eth`]}`);
+      expect(screen.getByTestId(`testid--DeFi-coin-value`)).toHaveTextContent(`${state.currencies.priceRates?.defichain[`eth`]}`);
+    });
+  });
 });

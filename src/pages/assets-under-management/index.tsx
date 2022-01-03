@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 // Import store and actions goes here
-import { RootState, useAppDispatch, useAppSelector } from '../../stores';
+import { useAppDispatch, useAppSelector } from '../../stores';
 import { fetchExchangeRate, selectCurrency } from '../../stores/slices/currencies';
 import { calculateAUMOfMasterNodes, fetchMasterNodes } from '../../stores/slices/masternodes';
 // Import components goes here
@@ -10,8 +10,6 @@ import ScreenContainer from '../../components/ScreenContainer';
 import Select from '../../components/Select';
 import UserAssetsPortfolio from '../../components/UserAssetsPortfolio';
 
-// Import Utils goes here
-import FormatUtils from '../../utils';
 // Import Icons goes here
 import { ReactComponent as SVGDeFiChainIcon } from '../../assets/icons/icon_defi-chain.svg';
 import { ReactComponent as SVGDashIcon } from '../../assets/icons/icon_dash.svg';

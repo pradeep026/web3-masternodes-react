@@ -36,14 +36,20 @@ type Props = {
     totalValueOfAssets?: number;
 }
 
-const AssetsUnderManagementCard: React.FC<Props> = ({ headerIcon, headingLabel, selecteCurrency, selectedCurrencyRatePerCoin, totalValueOfAssets, noOfCoins: noOfActiveMasterNodes, noOfMasterNodes }) => {
+const AssetsCard: React.FC<Props> = ({ headerIcon, headingLabel, selecteCurrency, selectedCurrencyRatePerCoin, totalValueOfAssets, noOfCoins: noOfActiveMasterNodes, noOfMasterNodes }) => {
 
     return (
         <div className='card'>
             <div className='card--header'>
                 { headerIcon && headerIcon}
                 <h3>{headingLabel}</h3>
-                <h4>{selectedCurrencyRatePerCoin && `${selectedCurrencyRatePerCoin} ${selecteCurrency}`}</h4>
+                {
+                    selectedCurrencyRatePerCoin &&
+                    <h4>
+                        <span>Per Coin</span>
+                        {selectedCurrencyRatePerCoin} {selecteCurrency}
+                    </h4>
+                }
             </div>
             <div className='card--content'>
                 <div className='info'>
@@ -63,4 +69,4 @@ const AssetsUnderManagementCard: React.FC<Props> = ({ headerIcon, headingLabel, 
     )
 };
 
-export default AssetsUnderManagementCard;
+export default AssetsCard;

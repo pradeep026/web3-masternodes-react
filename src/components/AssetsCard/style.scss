@@ -20,7 +20,13 @@
             display: flex;
             justify-content: flex-end;
             text-transform: uppercase;
-
+            
+            span {
+                padding-right: 0.5rem;
+                color: rgba(0, 0, 0, .6);
+                text-transform: none;
+                font-weight: 400;
+            }
         }
     }
 

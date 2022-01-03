@@ -21,9 +21,15 @@ type Props = {
      * Callback function to be called on value change
      */
     onSelect: (value: string) => void;
+
+    /**
+     * test id - will be used by react testing library
+     */
+
+    testId?: string;
 }
 
-const Select: React.FC<Props> = React.memo(({ options, value, onSelect }) => {
+const Select: React.FC<Props> = React.memo(({ options, value, onSelect, testId }) => {
     
   
     const __onChangeOption = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -32,7 +38,7 @@ const Select: React.FC<Props> = React.memo(({ options, value, onSelect }) => {
 
     return (
       <div className="select--component">
-        <select value={value} onChange={__onChangeOption}>
+        <select value={value} onChange={__onChangeOption} data-testid={testId ?? `testid--select`}>
             {
                 options.map((option, index) => {
                     return <option value={option.value} key={index}>{option.label}</option>

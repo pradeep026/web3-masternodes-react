@@ -1,7 +1,13 @@
+@import '../../styles/mixins';
+
 header {
     display: flex;
-    padding: 0.5rem 2rem;
+    padding: 2rem;
     border-bottom: 1px solid var(--border);
+
+    @include breakpoint(mobileonly) {
+        padding: 1rem;
+    }
     & h1 {
         flex: 1;
         padding: 0;

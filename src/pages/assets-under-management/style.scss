@@ -1,0 +1,63 @@
+@import '../../styles/mixins';
+
+.aum--page {
+    display: flex;
+    flex-direction: column;
+
+    & .wrapper {
+        flex-grow: 1;
+        padding: 1.5rem;
+    }
+    
+    & .total--assets {
+        margin-bottom: 0.5rem;
+        h3 {
+            color: var(--primary);
+        }
+        span {
+            font-size: var(--text-base);
+        }
+    }
+    & .currency---selection {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
+
+        h4 {
+            margin-right: 0.5rem;
+        }
+        
+        @include breakpoint(mobileonly) {
+            flex-direction: column;
+            align-items: flex-start;
+
+            h4 {
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+
+    & .card--wrapper {
+        display: flex;
+        gap: 4;
+
+        .card {
+            flex: 1;
+        }
+
+        .card:first-child {
+            margin-right: 1rem;
+        }
+
+        @include breakpoint(mobileonly) {
+            flex-direction: column;
+            .card {
+                margin-bottom: 1rem;
+            }
+            .card:first-child {
+                margin-right: 0;
+            }
+        }
+    }
+}

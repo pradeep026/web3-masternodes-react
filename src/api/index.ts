@@ -3,7 +3,7 @@
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { CryptoCoins, Currencies } from '../constants';
-import { MasterNode, PriceRatesOfDashAndDefichain } from '../stores/slices/types';
+import type { MasterNode, PriceRatesOfDashAndDefichain } from '../stores';
 
 const Http = {
     async get<TResponse>(request: AxiosRequestConfig): Promise<AxiosResponse<TResponse>> {

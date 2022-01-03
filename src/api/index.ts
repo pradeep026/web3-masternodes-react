@@ -37,7 +37,7 @@ export const fetchAllMasterNodes = async (): Promise<Array<MasterNode>> => {
     }
 };
 
-export const fetchExchangeRateBySelectedCurrency = async (currency: string): Promise<PriceRatesOfDashAndDefichain> => {
+export const fetchExchangeRateBySelectedCurrency = async (): Promise<PriceRatesOfDashAndDefichain> => {
     try {
         const cryptoCoins = Object.values(CryptoCoins);
         const currencies = Currencies.map(({ value }) => value);

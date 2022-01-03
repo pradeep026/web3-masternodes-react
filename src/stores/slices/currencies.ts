@@ -12,7 +12,7 @@ const initialState = {
 };
 
 export const fetchExchangeRate = createAsyncThunk<PriceRatesOfDashAndDefichain>('prices/selectedCurrency', async () => {
-    const response = await fetchExchangeRateBySelectedCurrency(`usd`);
+    const response = await fetchExchangeRateBySelectedCurrency();
     return response;
 });
 
